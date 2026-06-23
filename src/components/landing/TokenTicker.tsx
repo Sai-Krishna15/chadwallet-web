@@ -29,7 +29,7 @@ export function TokenTicker({
         {displayTokens.map((token, i) => {
           const change = token.price24hChangePercent || token.v24hChangePercent || 0;
           return (
-            <Link key={`${token.address}-${i}`} href={`/trade/${token.symbol}`} className="flex items-center gap-3 text-sm font-medium hover:opacity-80 transition-opacity cursor-pointer whitespace-nowrap">
+            <Link key={`${token.address}-${i}`} href={`/trade/${encodeURIComponent(token.symbol)}`} className="flex items-center gap-3 text-sm font-medium hover:opacity-80 transition-opacity cursor-pointer whitespace-nowrap">
               {token.logoURI ? (
                 <img src={token.logoURI} alt={token.symbol} className="w-5 h-5 rounded-full object-cover bg-white/10" />
               ) : (

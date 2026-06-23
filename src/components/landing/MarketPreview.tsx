@@ -41,7 +41,7 @@ export function MarketPreview({
             className="p-8 rounded-3xl bg-card border border-white/5 shadow-lg"
           >
             <h3 className="text-lg font-medium text-muted-foreground mb-4">{card.name}</h3>
-            <p className="text-4xl sm:text-5xl font-bold mb-2 text-foreground tracking-tighter">{card.value}</p>
+            <p suppressHydrationWarning className="text-4xl sm:text-5xl font-bold mb-2 text-foreground tracking-tighter">{card.value}</p>
             <p className="text-sm text-muted-foreground">{card.desc}</p>
           </motion.div>
         ))}
