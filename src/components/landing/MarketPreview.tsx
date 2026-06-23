@@ -2,11 +2,25 @@
 
 import { motion } from "framer-motion";
 
-export function MarketPreview() {
+import { BirdeyeToken } from "@/lib/birdeye/types";
+import { formatPercent, formatCompactNumber } from "@/lib/utils";
+
+export function MarketPreview({ 
+  trending, 
+  gainers 
+}: { 
+  trending: BirdeyeToken[], 
+  gainers: BirdeyeToken[] 
+}) {
+  
+  const topGainer = gainers?.[0] || { symbol: "N/A", v24hChangePercent: 0 };
+  const topTrending = trending?.[0] || { symbol: "N/A" };
+  const totalVolume = trending?.reduce((acc, t) => acc + (t.volume24hUSD || 0), 0) || 0;
+
   const cards = [
-    { name: "Top Gainers", value: "+24.5%", desc: "In the last 24h" },
-    { name: "Trending", value: "$CHAD", desc: "Most searched token" },
-    { name: "24h Volume", value: "$1.2B", desc: "Across all pairs" }
+    { name: "Top Gainer", value: `${topGainer.symbol} ${formatPercent(topGainer.v24hChangePercent)}`, desc: "In the last 24h" },
+    { name: "Trending", value: `$${topTrending.symbol}`, desc: "Most searched token" },
+    { name: "Top 20 Volume", value: formatCompactNumber(totalVolume), desc: "Across top trending" }
   ];
 
   return (
