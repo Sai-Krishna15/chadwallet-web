@@ -3,10 +3,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePrivy } from "@privy-io/react-auth";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
 export function Navbar() {
   const { login, authenticated, logout, ready } = usePrivy();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await logout();
+    router.push("/");
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-background/80 backdrop-blur-md border-b border-white/5">
@@ -22,7 +29,7 @@ export function Navbar() {
             <Link href="/profile">
               <Button variant="ghost" className="text-white hover:text-white/80">Profile</Button>
             </Link>
-            <Button onClick={logout} variant="secondary" className="bg-white/10 text-white hover:bg-white/20">Sign out</Button>
+            <Button onClick={handleLogout} variant="secondary" className="bg-white/10 text-white hover:bg-white/20">Sign out</Button>
           </>
         ) : (
           <Button onClick={login} className="bg-primary text-primary-foreground hover:bg-primary/90">

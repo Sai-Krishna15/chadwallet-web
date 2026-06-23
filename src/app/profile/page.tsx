@@ -8,11 +8,18 @@ import { formatCompactNumber } from "@/lib/utils";
 import { Copy, Wallet, Mail, LogOut, Activity } from "lucide-react";
 import { toast } from "sonner";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function ProfilePage() {
   const { user, authenticated, ready, logout } = usePrivy();
   const { wallets } = useWallets();
+  const router = useRouter();
+  
+  const handleLogout = async () => {
+    await logout();
+    router.push("/");
+  };
   
   // @ts-expect-error - chainType exists in newer Privy versions but might not be typed locally
   const solanaWallet = wallets.find(w => w.walletClientType === 'privy' || w.chainType === 'solana');
@@ -141,7 +148,7 @@ export default function ProfilePage() {
 
               <div className="mt-8 pt-6 border-t border-white/10">
                 <button
-                  onClick={logout}
+                  onClick={handleLogout}
                   className="w-full flex items-center justify-center gap-2 py-2 px-4 rounded-lg bg-red-500/10 text-red-500 hover:bg-red-500/20 transition-colors font-medium text-sm"
                 >
                   <LogOut className="w-4 h-4" /> Sign Out
