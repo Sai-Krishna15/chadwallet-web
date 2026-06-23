@@ -2,12 +2,14 @@
 
 import { PrivyProvider } from '@privy-io/react-auth';
 
+import { UserSync } from '@/components/UserSync';
+
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <PrivyProvider
       appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID!}
       config={{
-        loginMethods: ['email', 'wallet', 'google', 'apple'],
+        loginMethods: ['google', 'apple'],
         appearance: {
           theme: 'dark',
           accentColor: '#676FFF',
@@ -19,6 +21,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         },
       }}
     >
+      <UserSync />
       {children}
     </PrivyProvider>
   );
