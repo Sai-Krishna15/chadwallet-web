@@ -11,7 +11,7 @@ export async function GET() {
     }
     return NextResponse.json({ tokens: response.data.tokens });
   } catch (error) {
-    console.error('API /birdeye/trending error:', error);
+    console.log('API /birdeye/trending error:', error);
     return NextResponse.json({ error: 'Failed to fetch trending data' }, { status: 500 });
   }
 }

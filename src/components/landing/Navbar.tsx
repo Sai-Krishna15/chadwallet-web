@@ -19,14 +19,14 @@ export function Navbar() {
           <Button disabled className="bg-primary/50 text-white">Loading...</Button>
         ) : authenticated ? (
           <>
-            <Link href="/trade">
-              <Button variant="ghost" className="hidden sm:inline-flex text-white hover:text-white/80">Trade</Button>
+            <Link href="/profile">
+              <Button variant="ghost" className="text-white hover:text-white/80">Profile</Button>
             </Link>
-            <Button onClick={logout} variant="secondary" className="bg-white/10 text-white hover:bg-white/20">Disconnect</Button>
+            <Button onClick={logout} variant="secondary" className="bg-white/10 text-white hover:bg-white/20">Sign out</Button>
           </>
         ) : (
           <Button onClick={login} className="bg-primary text-primary-foreground hover:bg-primary/90">
-            Connect Wallet
+            Sign up
           </Button>
         )}
       </div>

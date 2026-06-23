@@ -11,7 +11,7 @@ export async function GET() {
     }
     return NextResponse.json({ tokens: response.data.tokens });
   } catch (error) {
-    console.error('API /birdeye/gainers error:', error);
+    console.log('API /birdeye/gainers error:', error);
     return NextResponse.json({ error: 'Failed to fetch gainers data' }, { status: 500 });
   }
 }

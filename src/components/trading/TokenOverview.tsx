@@ -1,6 +1,7 @@
 import { BirdeyeToken } from "@/lib/birdeye/types";
 import { formatPrice, formatPercent, formatCompactNumber } from "@/lib/utils";
 
+
 export function TokenOverview({ token, symbol }: { token?: BirdeyeToken, symbol: string }) {
   if (!token) {
     return (
@@ -25,10 +26,12 @@ export function TokenOverview({ token, symbol }: { token?: BirdeyeToken, symbol:
           <div className="w-16 h-16 rounded-full bg-white/10" />
         )}
         <div>
-          <h1 className="text-3xl font-bold flex items-center gap-2">
-            {token.symbol}
-            <span className="text-sm font-normal text-muted-foreground bg-white/5 px-2 py-1 rounded-md">{token.name}</span>
-          </h1>
+          <div className="flex items-center gap-4">
+            <h1 className="text-3xl font-bold flex items-center gap-2">
+              {token.symbol}
+              <span className="text-sm font-normal text-muted-foreground bg-white/5 px-2 py-1 rounded-md">{token.name}</span>
+            </h1>
+          </div>
           <div className="flex items-center gap-3 mt-2">
             <span className="text-2xl font-medium">{formatPrice(token.price)}</span>
             <span className={`text-sm font-medium px-2 py-1 rounded-md ${isPositive ? "bg-green-500/10 text-green-500" : "bg-red-500/10 text-red-500"}`}>
