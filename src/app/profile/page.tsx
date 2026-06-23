@@ -5,14 +5,15 @@ import { usePrivy, useWallets } from "@privy-io/react-auth";
 import { Navbar } from "@/components/landing/Navbar";
 import { rpcClient } from "@/lib/rpc/client";
 import { formatCompactNumber } from "@/lib/utils";
-import { Copy, Wallet, Mail, LogOut, Activity, Star } from "lucide-react";
+import { Copy, Wallet, Mail, LogOut, Activity } from "lucide-react";
 import { toast } from "sonner";
 import Link from "next/link";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function ProfilePage() {
   const { user, authenticated, ready, logout } = usePrivy();
   const { wallets } = useWallets();
-  console.log("ProfilePage wallets:", wallets);
+  
   // @ts-expect-error - chainType exists in newer Privy versions but might not be typed locally
   const solanaWallet = wallets.find(w => w.walletClientType === 'privy' || w.chainType === 'solana');
 
@@ -26,7 +27,54 @@ export default function ProfilePage() {
     }
   }, [authenticated, solanaWallet, user]);
 
-  if (!ready) return <div className="min-h-screen bg-background"><Navbar /><div className="pt-24 text-center">Loading...</div></div>;
+  if (!ready) {
+    return (
+      <div className="min-h-screen bg-background flex flex-col">
+        <Navbar />
+        <main className="flex-1 pt-24 px-6 max-w-4xl mx-auto w-full pb-20">
+          <div className="mb-8 space-y-2">
+            <Skeleton className="h-10 w-48" />
+            <Skeleton className="h-5 w-72" />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="md:col-span-1">
+              <div className="bg-card border border-white/5 rounded-2xl p-6 space-y-6">
+                <Skeleton className="w-20 h-20 rounded-full" />
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <Skeleton className="h-3 w-24" />
+                    <Skeleton className="h-5 w-full" />
+                  </div>
+                  <div className="space-y-2">
+                    <Skeleton className="h-3 w-32" />
+                    <Skeleton className="h-5 w-full" />
+                  </div>
+                </div>
+                <Skeleton className="h-10 w-full mt-8" />
+              </div>
+            </div>
+            <div className="md:col-span-2">
+              <div className="bg-card border border-white/5 rounded-2xl p-6 space-y-4">
+                <Skeleton className="h-7 w-48 mb-6" />
+                {Array.from({ length: 3 }).map((_, i) => (
+                  <div key={i} className="flex items-center justify-between p-4 bg-background/50 rounded-xl border border-white/5">
+                    <div className="flex items-center gap-3">
+                      <Skeleton className="w-10 h-10 rounded-full" />
+                      <div className="space-y-2">
+                        <Skeleton className="h-4 w-24" />
+                        <Skeleton className="h-3 w-12" />
+                      </div>
+                    </div>
+                    <Skeleton className="h-5 w-20" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    );
+  }
 
   if (!authenticated) {
     return (

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { formatCompactNumber, formatPercent } from "@/lib/utils";
-
+import { Skeleton } from "@/components/ui/skeleton";
 interface Holder {
   owner: string;
   ui_amount: number;
@@ -38,8 +38,22 @@ export function HoldersList({ address }: { address?: string }) {
           No token selected.
         </div>
       ) : loading ? (
-        <div className="flex-1 flex items-center justify-center text-muted-foreground text-sm">
-          Loading holders...
+        <div className="flex-1 overflow-y-auto custom-scrollbar pr-2 space-y-2">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <div key={i} className="flex flex-col gap-2 p-3 rounded-xl bg-white/5">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <Skeleton className="w-5 h-4" />
+                  <Skeleton className="w-24 h-4" />
+                </div>
+                <div className="flex flex-col items-end gap-1">
+                  <Skeleton className="w-12 h-4" />
+                  <Skeleton className="w-16 h-3" />
+                </div>
+              </div>
+              <Skeleton className="w-full h-1.5 rounded-full" />
+            </div>
+          ))}
         </div>
       ) : holders.length === 0 ? (
         <div className="flex-1 flex items-center justify-center text-muted-foreground text-sm">

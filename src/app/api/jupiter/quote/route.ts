@@ -27,14 +27,14 @@ export async function GET(request: Request) {
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.log("Jupiter API Error:", errorText);
+      console.error("Jupiter API Error:", errorText);
       return NextResponse.json({ error: "Failed to fetch quote from Jupiter" }, { status: response.status });
     }
 
     const data = await response.json();
     return NextResponse.json(data);
   } catch (error) {
-    console.log("Jupiter Proxy Error:", error);
+    console.error("Jupiter Proxy Error:", error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }

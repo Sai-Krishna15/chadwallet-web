@@ -8,7 +8,9 @@ export function Footer() {
           <Image src="/assets/logo/dark.png" alt="ChadWallet Logo" width={28} height={28} className="w-7 h-7 object-contain" />
           <span className="text-lg font-bold tracking-tight">ChadWallet</span>
         </div>
-        <div className="flex gap-8 text-sm font-medium text-muted-foreground">
+        <div className="flex flex-wrap items-center justify-center gap-6 text-sm font-medium text-muted-foreground">
+          <a href="https://apps.apple.com/us/app/chadwallet/id6757367474" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">App Store</a>
+          <a href="https://play.google.com/store/apps/details?id=xyz.chadwallet.www" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Google Play</a>
           <a href="#" className="hover:text-primary transition-colors">Twitter</a>
           <a href="#" className="hover:text-primary transition-colors">Discord</a>
           <a href="#" className="hover:text-primary transition-colors">Terms</a>

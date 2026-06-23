@@ -1,14 +1,31 @@
 import { BirdeyeToken } from "@/lib/birdeye/types";
 import { formatPrice, formatPercent, formatCompactNumber } from "@/lib/utils";
+import { Skeleton } from "@/components/ui/skeleton";
 
-
-export function TokenOverview({ token, symbol }: { token?: BirdeyeToken, symbol: string }) {
+export function TokenOverview({ token }: { token?: BirdeyeToken }) {
   if (!token) {
     return (
       <div className="bg-card border border-white/5 rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-6">
-        <div>
-          <h1 className="text-3xl font-bold">{symbol}</h1>
-          <p className="text-muted-foreground">Loading data...</p>
+        <div className="flex items-center gap-4">
+          <Skeleton className="w-16 h-16 rounded-full" />
+          <div className="space-y-3">
+            <div className="flex items-center gap-2">
+              <Skeleton className="h-8 w-24" />
+              <Skeleton className="h-6 w-32" />
+            </div>
+            <div className="flex items-center gap-3">
+              <Skeleton className="h-6 w-32" />
+              <Skeleton className="h-6 w-16" />
+            </div>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 md:gap-12">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <div key={i} className="flex flex-col gap-2">
+              <Skeleton className="h-3 w-16" />
+              <Skeleton className="h-5 w-24" />
+            </div>
+          ))}
         </div>
       </div>
     );

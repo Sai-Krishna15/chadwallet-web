@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { BirdeyeToken } from "@/lib/birdeye/types";
 import { formatPrice, formatPercent } from "@/lib/utils";

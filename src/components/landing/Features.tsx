@@ -38,21 +38,46 @@ export function Features() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.2 }}
+            transition={{ duration: 0.7, delay: i * 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col items-center text-center group"
           >
-            <div className="w-full max-w-[280px] aspect-[1/2] relative mb-8 rounded-[2rem] overflow-hidden border-8 border-card shadow-2xl group-hover:-translate-y-4 transition-transform duration-500 ease-out bg-black">
+            <div className="w-full max-w-[260px] aspect-[9/19.5] relative mb-8 rounded-[2.5rem] overflow-hidden border-[6px] border-[#111] shadow-[0_20px_50px_-12px_rgba(255,255,255,0.05)] group-hover:-translate-y-4 group-hover:shadow-[0_20px_60px_-12px_rgba(255,255,255,0.1)] transition-all duration-500 ease-out bg-black ring-1 ring-white/10">
               <Image 
                 src={feature.image} 
                 alt={feature.title} 
                 fill 
-                className="object-contain"
+                className="object-cover"
               />
             </div>
             <h3 className="text-2xl font-bold mb-3">{feature.title}</h3>
             <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
           </motion.div>
         ))}
+      </div>
+
+      <div className="mt-20 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a 
+          href="https://apps.apple.com/us/app/chadwallet/id6757367474" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="flex items-center gap-3 px-6 py-3 bg-white/5 hover:bg-white/10 rounded-xl transition-colors border border-white/10"
+        >
+          <div className="flex flex-col text-left">
+            <span className="text-xs text-muted-foreground uppercase tracking-wider">Download on the</span>
+            <span className="text-xl font-bold">App Store</span>
+          </div>
+        </a>
+        <a 
+          href="https://play.google.com/store/apps/details?id=xyz.chadwallet.www" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="flex items-center gap-3 px-6 py-3 bg-white/5 hover:bg-white/10 rounded-xl transition-colors border border-white/10"
+        >
+          <div className="flex flex-col text-left">
+            <span className="text-xs text-muted-foreground uppercase tracking-wider">Get it on</span>
+            <span className="text-xl font-bold">Google Play</span>
+          </div>
+        </a>
       </div>
     </section>
   );

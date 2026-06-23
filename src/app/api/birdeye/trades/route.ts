@@ -28,7 +28,7 @@ export async function GET(request: Request) {
     const data = await response.json();
     return NextResponse.json(data);
   } catch (error) {
-    console.log("Trades API error:", error);
+    console.error("Trades API error:", error);
     return NextResponse.json({ error: "Failed to fetch trades" }, { status: 500 });
   }
 }

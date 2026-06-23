@@ -48,7 +48,7 @@ export default async function TradePage({ params }: { params: { token: string } 
           }
           centerPanel={
             <>
-              <TokenOverview token={tokenData} symbol={symbol} />
+              <TokenOverview token={tokenData} />
               <TradingChart symbol={symbol} address={tokenData?.address} />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <RecentTrades address={tokenData?.address} />

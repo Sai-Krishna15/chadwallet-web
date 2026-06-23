@@ -5,14 +5,14 @@ import { motion } from "framer-motion";
 import { BirdeyeToken } from "@/lib/birdeye/types";
 import { formatPercent, formatCompactNumber } from "@/lib/utils";
 
-export function MarketPreview({ 
-  trending, 
-  gainers 
-}: { 
-  trending: BirdeyeToken[], 
-  gainers: BirdeyeToken[] 
+export function MarketPreview({
+  trending,
+  gainers
+}: {
+  trending: BirdeyeToken[],
+  gainers: BirdeyeToken[]
 }) {
-  
+
   const topGainer = gainers?.[0] || { symbol: "N/A", v24hChangePercent: 0 };
   const topTrending = trending?.[0] || { symbol: "N/A" };
   const totalVolume = trending?.reduce((acc, t) => acc + (t.volume24hUSD || 0), 0) || 0;
@@ -29,10 +29,10 @@ export function MarketPreview({
         <h2 className="text-3xl font-bold mb-4">Market Preview</h2>
         <p className="text-muted-foreground">Live Solana ecosystem data (Powered by BirdEye)</p>
       </div>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {cards.map((card, i) => (
-          <motion.div 
+          <motion.div
             key={i}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -41,7 +41,7 @@ export function MarketPreview({
             className="p-8 rounded-3xl bg-card border border-white/5 shadow-lg"
           >
             <h3 className="text-lg font-medium text-muted-foreground mb-4">{card.name}</h3>
-            <p suppressHydrationWarning className="text-4xl sm:text-5xl font-bold mb-2 text-foreground tracking-tighter">{card.value}</p>
+            <p suppressHydrationWarning className="text-3xl sm:text-4xl font-bold mb-2 text-foreground tracking-tighter ellipsis">{card.value}</p>
             <p className="text-sm text-muted-foreground">{card.desc}</p>
           </motion.div>
         ))}

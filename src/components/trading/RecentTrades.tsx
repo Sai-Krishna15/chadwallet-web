@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { formatCompactNumber } from "@/lib/utils";
-import { ExternalLink } from "lucide-react";
+import {  } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface Trade {
   txHash: string;
@@ -39,8 +40,22 @@ export function RecentTrades({ address }: { address?: string }) {
           No token selected.
         </div>
       ) : loading ? (
-        <div className="flex-1 flex items-center justify-center text-muted-foreground text-sm">
-          Loading trades...
+        <div className="flex-1 overflow-y-auto custom-scrollbar pr-2 space-y-2">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-white/5">
+              <div className="flex items-center gap-3">
+                <Skeleton className="w-2 h-2 rounded-full" />
+                <div className="space-y-2">
+                  <Skeleton className="h-4 w-24" />
+                  <Skeleton className="h-3 w-16" />
+                </div>
+              </div>
+              <div className="flex flex-col items-end space-y-2">
+                <Skeleton className="h-4 w-20" />
+                <Skeleton className="h-3 w-12" />
+              </div>
+            </div>
+          ))}
         </div>
       ) : trades.length === 0 ? (
         <div className="flex-1 flex items-center justify-center text-muted-foreground text-sm">

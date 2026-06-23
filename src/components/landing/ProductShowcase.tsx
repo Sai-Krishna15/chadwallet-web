@@ -22,24 +22,32 @@ export function ProductShowcase() {
         </p>
       </div>
 
-      <div className="relative w-full flex overflow-hidden pb-10 max-w-7xl mx-auto">
+      <motion.div 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="relative w-full flex overflow-hidden pb-20 max-w-7xl mx-auto"
+      >
+        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black/40 to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black/40 to-transparent z-10 pointer-events-none" />
         <motion.div 
-          className="flex gap-8 px-4"
+          className="flex gap-12 px-4"
           animate={{ x: ["0%", "-50%"] }}
-          transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
+          transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
         >
           {[...screenshots, ...screenshots].map((src, i) => (
-            <div key={i} className="relative min-w-[280px] aspect-[1/2] rounded-[2rem] overflow-hidden border-8 border-card shadow-2xl flex-shrink-0 bg-black">
+            <div key={i} className="relative min-w-[700px] md:min-w-[900px] aspect-[16/9] rounded-3xl overflow-hidden flex-shrink-0 bg-black/20 border border-white/5 shadow-2xl">
               <Image 
                 src={src} 
-                alt={`Screenshot ${i + 1}`} 
+                alt={`App Flow ${i + 1}`} 
                 fill 
                 className="object-contain"
               />
             </div>
           ))}
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }
